@@ -1,8 +1,11 @@
-import main.java.com.algosec.automation.training.builder.UseBuilder;
+import main.java.com.algosec.automation.training.collectionsTraining.UseStudents;
 
 public class Main {
 
     public static void main(String[] args) {
-        UseBuilder.useBuilder();
+        //UseBuilder.useBuilder();
+
+        UseStudents.UseStudents();
+
     }
 }
