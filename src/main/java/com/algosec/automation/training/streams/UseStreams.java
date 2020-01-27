@@ -11,9 +11,6 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class UseStreams {
-
-
-
     public static void useStreams() {
         IntStream
                 .range(1, 10)
@@ -67,7 +64,28 @@ public class UseStreams {
                 .filter(x -> Integer.parseInt(x[1]) > 15)
                 .forEach(x -> System.out.println(x[0] + "  " + x[1] + "  " + x[2]));
         rows.close();
-
     }
 
+    public static void orderInStreams() {
+        //look at the order of print - we combine between actions
+        Stream.of("d2", "a2", "b1", "b3", "c")
+                .filter(s -> {
+                    System.out.println("filter: " + s);
+                    return true;
+                })
+                .forEach(s -> System.out.println("forEach: " + s));
+
+        System.out.println();
+
+        //this behavior helps us reducing actions significantly
+        Stream.of("d2", "a2", "b1", "b3", "c")
+                .map(s -> {
+                    System.out.println("map: " + s);
+                    return s.toUpperCase();
+                })
+                .anyMatch(s -> {
+                    System.out.println("anyMatch: " + s);
+                    return s.startsWith("A");
+                });
+    }
 }
